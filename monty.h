@@ -18,6 +18,13 @@ typedef enum Bool
 	true
 } Bool;
 
+typedef struct data_s
+{
+	int arg;
+	int flag;
+} data_t;
+extern data_t arg;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -55,7 +62,8 @@ typedef struct instruction_s
 stack_t *new_stack(void);
 Bool is_empty_stack(stack_t **stack);
 void get_opcode(char *opcode, stack_t **stack, int line_number);
-void m_push(stack_t **stack, int line_number);
-void m_pall(stack_t **stack);
+void push(stack_t **stack, int line_number);
+void pall(stack_t **stack, int line_number);
+void free_stack(stack_t **stack);
 
 #endif
