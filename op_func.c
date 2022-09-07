@@ -6,7 +6,7 @@
  * @line_number: the line within the stuck
  */
 
-void op_push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *nw;
 	
