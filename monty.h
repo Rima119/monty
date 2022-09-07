@@ -57,5 +57,5 @@ Bool is_empty_stack(stack_t **stack);
 void get_opcode(char *opcode, stack_t **stack, int line_number);
 void m_push(stack_t **stack, int line_number);
 void m_pall(stack_t **stack);
-
+void free_stack(stack_t **head);
 #endif
