@@ -1,6 +1,6 @@
-#include "mont.h"
+#include "monty.h"
 /**
- * get_opcode - Check if opcode is a valid opcode and apply associated processing if yes
+ * get_opcode - Check if opcode is a valid opcode
  * @opcode: opcode to check
  * @stack : double pointer to the beginnig of the stack
  * @line_number :  script line number
