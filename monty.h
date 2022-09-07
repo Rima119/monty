@@ -16,7 +16,7 @@ typedef enum Bool
 {
 	false,
 	true
-}Bool;
+} Bool;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -52,7 +52,7 @@ typedef struct instruction_s
 
 
 /* Prototypes */
-stack_t* new_stack(void);
+stack_t *new_stack(void);
 Bool is_empty_stack(stack_t **stack);
 void get_opcode(char *opcode, stack_t **stack, int line_number);
 void m_push(stack_t **stack, int line_number);
