@@ -24,10 +24,10 @@ void op_push(stack_t **stack, unsigned int line_number)
 	}
 	nw->next = *stack;
 	nw->prev = NULL;
-	nw->n = data.arg;
+	nw->n = arg.arg;
 	if (*stack)
-		(*stack)->prev = new;
-	*stack = new;
+		(*stack)->prev = nw;
+	*stack = nw;
 }
 
 /**

@@ -8,7 +8,7 @@
 void get_opcode(char *opcode, stack_t **stack, unsigned int line_number)
 {
 	size_t i;
-	instruction_t opcode_arr[] = {{"push", m_push}, {"pall", m_pall}, {NULL, NULL}
+	instruction_t opcode_arr[] = {{"push", push}, {"pall", pall}, {NULL, NULL}
 	};
 
 	for (i = 0; opcode_arr[i].opcode != NULL; i++)
@@ -19,6 +19,6 @@ void get_opcode(char *opcode, stack_t **stack, unsigned int line_number)
 			return;
 		}
 	}
-	dprintf(STDERR_FILENO, "L%u: unknow instruction %s\n", line_number, opcode);
+	fprintf(stderr, "L%u: unknow instruction %s\n", line_number, opcode);
 	exit(EXIT_FAILURE);
 }

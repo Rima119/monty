@@ -3,6 +3,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -61,15 +62,9 @@ typedef struct instruction_s
 /* Prototypes */
 stack_t *new_stack(void);
 Bool is_empty_stack(stack_t **stack);
-void get_opcode(char *opcode, stack_t **stack, int line_number);
-<<<<<<< HEAD
-void m_push(stack_t **stack, int line_number);
-void m_pall(stack_t **stack);
+void get_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t **head);
-=======
-void push(stack_t **stack, int line_number);
-void pall(stack_t **stack, int line_number);
-void free_stack(stack_t **stack);
 
->>>>>>> 0774007056037f12d9c4176065b5ba2f40956946
 #endif
