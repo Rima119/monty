@@ -24,7 +24,7 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 	nw->next = *stack;
 	nw->prev = NULL;
-	nw->n = arg.arg;
+	nw->n = line_number;
 	if (*stack)
 		(*stack)->prev = nw;
 	*stack = nw;

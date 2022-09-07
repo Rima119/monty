@@ -13,18 +13,7 @@
 #include <stdarg.h>
 
 
-typedef enum Bool
-{
-	false,
-	true
-} Bool;
-
-typedef struct data_s
-{
-	int arg;
-	int flag;
-} data_t;
-extern data_t arg;
+extern int line_number;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -60,9 +49,7 @@ typedef struct instruction_s
 
 
 /* Prototypes */
-stack_t *new_stack(void);
-Bool is_empty_stack(stack_t **stack);
-void get_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+void (*get_opcode(char *s))(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t **head);
