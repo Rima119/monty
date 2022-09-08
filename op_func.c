@@ -11,39 +11,24 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
 
-<<<<<<< HEAD
+	if (!stack)
+		return;
+
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new->next = *stack;
+	new->next = NULL;
 	new->prev = NULL;
 	new->n = line_number;
-	if (*stack != NULL)
-		(*stack)->prev = new;
-=======
-	if (!stack)
-		return;
-
-	new = malloc(sizeof(stack_t));	
-    if (new == NULL)	
-    {		
-           fprintf(stderr, "Error: malloc failed\n");		
-           exit(EXIT_FAILURE);	
-     }
-	new->next = NULL;	
-    new->prev = NULL;	
-    new->n = line_number;
-    if (!(*stack))
+	if (!(*stack))
 	{
 		(*stack) = new;
 		return;
-	}	/* If the stack is not empty*/	
-          	
-    new->next = *stack;
->>>>>>> 4ae248d5fff6f28183f5ed4c23c3279861e9cc78
+	}
+	new->next = *stack;
 	*stack = new;
 }
 
@@ -57,33 +42,64 @@ void push(stack_t **stack, unsigned int line_number)
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
-<<<<<<< HEAD
 	(void)(line_number);
 	temp = *stack;
-	if (*stack == NULL)
+
+	if (!temp)
 	{
-		fprintf(stderr, "The stack is empty\n");
-		exit(EXIT_FAILURE);
+		return;
 	}
-	while (*stack != NULL)
+	while (temp)
 	{
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
-=======
+}
 
-    (void)(line_number);
+/**
+ * pint - prints the value at the top of the stack, followed by a new line
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ */
 
-    if (*stack == NULL)
-    {
-        return;
-    }
-	temp = *stack;
-	
-    while (temp)	
-    {		
-        printf("%d\n", temp->n);	
-        temp = temp->next;
-    }
->>>>>>> 4ae248d5fff6f28183f5ed4c23c3279861e9cc78
+void pint(stack_t **stack, unsigned int line_number)
+{
+	if (!stack || !(*stack))
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * pop - removes the top element of the stack
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ */
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *pl;
+
+	if (!stack || !(*stack))
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	pl = (*stack)->next;
+	free(*stack);
+	*stack = pl;
+}
+
+/**
+ * nop - doesn’t do anything.
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ */
+
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void) stack;
+	(void) line_number;
 }
