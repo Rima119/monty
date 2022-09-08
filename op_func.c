@@ -11,7 +11,6 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
 
-<<<<<<< HEAD
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
@@ -23,27 +22,24 @@ void push(stack_t **stack, unsigned int line_number)
 	new->n = line_number;
 	if (*stack != NULL)
 		(*stack)->prev = new;
-=======
 	if (!stack)
 		return;
 
-	new = malloc(sizeof(stack_t));	
-    if (new == NULL)	
-    {		
-           fprintf(stderr, "Error: malloc failed\n");		
-           exit(EXIT_FAILURE);	
-     }
-	new->next = NULL;	
-    new->prev = NULL;	
-    new->n = line_number;
-    if (!(*stack))
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new->next = NULL;
+	new->prev = NULL;
+	new->n = line_number;
+	if (!(*stack))
 	{
 		(*stack) = new;
 		return;
-	}	/* If the stack is not empty*/	
-          	
-    new->next = *stack;
->>>>>>> 4ae248d5fff6f28183f5ed4c23c3279861e9cc78
+	}
+	new->next = *stack;
 	*stack = new;
 }
 
@@ -57,9 +53,9 @@ void push(stack_t **stack, unsigned int line_number)
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
-<<<<<<< HEAD
 	(void)(line_number);
 	temp = *stack;
+
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "The stack is empty\n");
@@ -70,20 +66,9 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
-=======
-
-    (void)(line_number);
-
-    if (*stack == NULL)
-    {
-        return;
-    }
-	temp = *stack;
-	
-    while (temp)	
-    {		
-        printf("%d\n", temp->n);	
-        temp = temp->next;
-    }
->>>>>>> 4ae248d5fff6f28183f5ed4c23c3279861e9cc78
+	while (temp)
+	{
+		printf("%d\n", temp->n);
+		temp = temp->next;
+	}
 }
