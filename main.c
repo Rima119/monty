@@ -1,5 +1,5 @@
 #include "monty.h"
-
+#include <stdio.h>
 /**
  * main - main function
  * @argc: argument count
@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 {
 	FILE *fl;
 
+	printf("%s", *argv);
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
