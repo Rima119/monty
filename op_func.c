@@ -80,16 +80,14 @@ void pint(stack_t **stack, unsigned int line_number)
 
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *pl;
+	stack_t *p1;
 
-	if (!stack || !(*stack))
+	p1 = *stack;
+	if (p1->next)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
+		p1->next->prev = NULL;
 	}
-	pl = (*stack)->next;
-	free(*stack);
-	*stack = pl;
+	free(p1);
 }
 
 /**
