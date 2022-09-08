@@ -11,8 +11,6 @@ void push(stack_t **stack, unsigned int line_number)
 {	
     stack_t *new;
 
-
-    (void)line_number;
 	new = malloc(sizeof(stack_t));	
     if (new == NULL)	
     {		
@@ -21,11 +19,10 @@ void push(stack_t **stack, unsigned int line_number)
      }
 	new->next = *stack;	
     new->prev = NULL;	
-    new->n = arg.arg;	/*Fix the int*/
+    new->n = line_number;
     if (*stack != NULL)	/* If the stack is not empty*/	
           (*stack)->prev = new;	
     *stack = new;
-    arg.length_SQ++; 
 }
 /** 
    * pall - prints the data of all nodes in stack 
@@ -39,13 +36,13 @@ void pall(stack_t **stack, unsigned int line_number)
     (void)(line_number);
 	temp = *stack;
 
-    if (is_empty_stack(stack))
+    if (*stack == NULL)
     {
         fprintf(stderr, "The stack is empty\n");
         exit(EXIT_FAILURE);
     }
 
-    while (!is_empty_stack(stack))	
+    while (*stack != NULL)	
     {		
         printf("%d\n", temp->n);	
         temp = temp->next;
