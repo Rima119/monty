@@ -55,3 +55,51 @@ void pall(stack_t **stack, unsigned int line_number)
 		temp = temp->next;
 	}
 }
+
+/**
+ * pint - prints the value at the top of the stack, followed by a new line
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ */
+
+void pint(stack_t **stack, unsigned int line_number)
+{
+	if (!stack || !(*stack))
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * pop - removes the top element of the stack
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ */
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *pl;
+
+	if (!stack || !(*stack))
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	pl = (*stack)->next;
+	free(*stack);
+	*stack = pl;
+}
+
+/**
+ * nop - doesn’t do anything.
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ */
+
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void) stack;
+	(void) line_number;
+}
