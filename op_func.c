@@ -1,50 +1,50 @@
 #include "monty.h"
 
-/** 
-   * push - pushes a node to the top of stack 
-   * @stack: pointer to the head node pointer of stack 
-   * @line_number: the line number
-   * Return: Nothing. 
-   */
+/**
+ * push - pushes a node to the top of stack
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ * Return: Nothing
+ */
 
 void push(stack_t **stack, unsigned int line_number)
-{	
-    stack_t *new;
+{
+	stack_t *new;
 
-	new = malloc(sizeof(stack_t));	
-    if (new == NULL)	
-    {		
-           fprintf(stderr, "Error: malloc failed\n");		
-           exit(EXIT_FAILURE);	
-     }
-	new->next = *stack;	
-    new->prev = NULL;	
-    new->n = line_number;
-    if (*stack != NULL)	/* If the stack is not empty*/	
-          (*stack)->prev = new;	
-    *stack = new;
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new->next = *stack;
+	new->prev = NULL;
+	new->n = line_number;
+	if (*stack != NULL)
+		(*stack)->prev = new;
+	*stack = new;
 }
-/** 
-   * pall - prints the data of all nodes in stack 
-   * @stack: pointer to the head node pointer of stack 
-   * @line_number: the line number
-   * Return: Nothing.
-   */
+
+/**
+ * pall - prints the data of all nodes in stack
+ * @stack: pointer to the head node pointer of stack
+ * @line_number: the line number
+ * Return: Nothing
+ */
+
 void pall(stack_t **stack, unsigned int line_number)
-{		
+{
 	stack_t *temp;
-    (void)(line_number);
+	(void)(line_number);
 	temp = *stack;
-
-    if (*stack == NULL)
-    {
-        fprintf(stderr, "The stack is empty\n");
-        exit(EXIT_FAILURE);
-    }
-
-    while (*stack != NULL)	
-    {		
-        printf("%d\n", temp->n);	
-        temp = temp->next;
-    }
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "The stack is empty\n");
+		exit(EXIT_FAILURE);
+	}
+	while (*stack != NULL)
+	{
+		printf("%d\n", temp->n);
+		temp = temp->next;
+	}
 }

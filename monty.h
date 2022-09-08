@@ -1,5 +1,6 @@
 #ifndef __MONTY__
 #define __MONTY__
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -11,24 +12,8 @@
 #include <ctype.h>
 #include <stdarg.h>
 
-
-
 #define STACK 0
 #define QUEUE 1
-
-typedef enum Bool
-{
-    false,
-    true
-}Bool;
-
-typedef struct arg_s
-{	
-    int arg;	
-    int flag;
-    unsigned int length_SQ; /* stack or queue size */
-} arg_t;
-extern arg_t arg;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,9 +26,9 @@ extern arg_t arg;
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -56,14 +41,13 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 
 /* Prototypes */
-stack_t* new_stack(void);
-Bool is_empty_stack(stack_t **stack);
+stack_t *new_stack(void);
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);

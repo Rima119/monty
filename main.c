@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 {
 	FILE *fl;
 
-	
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");

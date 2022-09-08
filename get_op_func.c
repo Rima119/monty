@@ -1,20 +1,19 @@
 #include "monty.h"
 
 /**
- * get_func - Check if opcode is a valid opcode and apply associated processing if yes
- * @opcode : opcode to check
+ * get_op_func - Check if opcode is a valid opcode
+ * @opcode: opcode to check
  * Return: the function associated with an opcode or Null on failure
  */
 
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
 {
+	int i = 0;
+	const int LEN = 14;
 	instruction_t inst[] = {
 		{"push", push},
 		{"pall", pall},
 	};
-
-	const int LEN = 14;
-	int i = 0;
 
 	while (i < LEN)
 	{
@@ -22,6 +21,5 @@ void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
 			return (inst[i].f);
 		i++;
 	}
-
 	return (NULL);
 }
