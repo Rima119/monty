@@ -67,7 +67,7 @@ void execute_func(stack_t **stack, char **arr, unsigned int line)
 		return;
 	}
 
-	func = get_func(arr[0]);
+	func = get_op_func(arr[0]);
 	if (func)
 		func(stack, line);
 	else if (!func && strcmp(arr[0], "\n") != 0)
