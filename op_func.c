@@ -7,16 +7,16 @@
    * Return: Nothing. 
    */
 
-void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {	
     stack_t *new;
-    
-    arg.arg = 0;
+
+
     (void)line_number;
 	new = malloc(sizeof(stack_t));	
     if (new == NULL)	
     {		
-           dprintf(STDERR_FILENO, "Error: malloc failed\n");		
+           fprintf(stderr, "Error: malloc failed\n");		
            exit(EXIT_FAILURE);	
      }
 	new->next = *stack;	
@@ -41,7 +41,7 @@ void pall(stack_t **stack, unsigned int line_number)
 
     if (is_empty_stack(stack))
     {
-        dprintf(STDERR_FILENO, "The stack is empty\n");
+        fprintf(stderr, "The stack is empty\n");
         exit(EXIT_FAILURE);
     }
 

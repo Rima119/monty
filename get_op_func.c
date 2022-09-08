@@ -25,7 +25,7 @@ void get_opcode(char *opcode, stack_t **stack, int line_number)
         }
 
 	}
-    dprintf(STDERR_FILENO,"L%u: unknow instruction %s\n", line_number, opcode);
+    fprintf(stderr,"L%u: unknow instruction %s\n", line_number, opcode);
     exit(EXIT_FAILURE);
 
 }
