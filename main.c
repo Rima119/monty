@@ -1,79 +1,77 @@
 #include "monty.h"
 
 /**
- * tokenize - split the buf and store it in an array
- * @buf: buffer to be split
- * @arr: array buffer to be store in
+ * bufze - store the buf in an array
+ * @b: the buffer
+ * @array: the stored array buffer
  * Return: Length of the array
  */
 
 
-void tokenize(char *buf, char **arr)
+void bufze(char *b, char **array)
 {
-	arr[0] = strtok(buf, " \t\r\n");
-	arr[1] = strtok(NULL, " \t\r\n");
+	array[0] = strtok(b, " \t\r\n");
+	array[1] = strtok(NULL, " \t\r\n");
 }
 
 /**
- * istherealpha - check if there is an alphabet in a string
- * @s: string to check
- * Return: 1 if True or ) if False
+ * _isalpha - function that checks for alphabetic character
+ * @c: The character in ASCII code
+ * Return: 1 if c is lowercase or uppercase, 0 otherwise
  */
 
-int istherealpha(char *s)
+int _isalpha(char *c)
 {
-	while (*s)
+	while (*c)
 	{
-		if ((*s >= 'a' && *s <= 'z') || (*s >= 'A' && *s <= 'Z'))
+		if ((*c >= 'a' && *c <= 'z') || (*c >= 'A' && *c <= 'Z'))
 			return (1);
-		s++;
+		c++;
 	}
-
 	return (0);
 }
 
 /**
- * execute_func - executes the rightful monty function
- * @stack: head of stack
- * @arr: array of tokenize values
- * @line: current line of execution
- * Return: Nothing when found, Terminate the program when no function is found
+ * app_func - execute the correct function
+ * @stack: pointer to the head node pointer of stack
+ * @array: array
+ * @line_number: the line number
  */
 
-void execute_func(stack_t **stack, char **arr, unsigned int line)
+void app_func(stack_t **stack, char **array, unsigned int line_number)
 {
-	unsigned int num;
-	void (*func)(stack_t **top, unsigned int number);
+	unsigned int number;
+	void (*func)(stack_t **sta, unsigned int l_number);
 
-	if (arr[1] != NULL)
-		num = atoi(arr[1]);
+	if (array[1] != NULL)
+		number = atoi(array[1]);
 	else
-		num = 0;
+		number = 0;
 
-	if (!arr[0] || arr[0][0] == '#')
+	if (!array[0] || array[0][0] == '#')
 		return;
 
-	if (strcmp(arr[0], "push") == 0 && (!arr[1] || istherealpha(arr[1])))
+	if (strcmp(array[0], "push") == 0 && (!array[1] || _isalpha(array[1])))
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		if (stack)
 			free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 
-	if (strcmp(arr[0], "push") == 0)
+	if (strcmp(array[0], "push") == 0)
 	{
-		push(stack, num);
+		push(stack, number);
 		return;
 	}
 
-	func = get_op_func(arr[0]);
+	func = get_op_func(array[0]);
 	if (func)
-		func(stack, line);
-	else if (!func && strcmp(arr[0], "\n") != 0)
+		func(stack, line_number);
+	else if (!func && strcmp(array[0], "\n") != 0)
 	{
 
-		fprintf(stderr, "L%d: unknown instruction %s\n", line, arr[0]);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, array[0]);
 		if (*stack)
 			free_stack(stack);
 		exit(EXIT_FAILURE);
@@ -82,7 +80,7 @@ void execute_func(stack_t **stack, char **arr, unsigned int line)
 
 
 /**
- * main - main function
+ * main - Entry point
  * @argc: argument count
  * @argv: arguments v
  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure
@@ -90,33 +88,33 @@ void execute_func(stack_t **stack, char **arr, unsigned int line)
 
 int main(int argc, char *argv[])
 {
-	int line_number = 0;
+	int num = 0;
 	stack_t *stack = NULL;
-	FILE *fp;
-	char buf[1024], *arr[100];
-	size_t buflen = 1024;
+	FILE *file;
+	char buff[1024], *array[100];
+	size_t bulen = 1024;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
-	fp = fopen(argv[1], "r");
-	if (fp == NULL)
+	file = fopen(argv[1], "r");
+	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		return (EXIT_FAILURE);
 	}
-	while (fgets(buf, buflen, fp) != NULL)
+	while (fgets(buff, bulen, file) != NULL)
 	{
-		line_number++;
+		num++;
 
-		if (strcmp(buf, "\n") == 0)
+		if (strcmp(buff, "\n") == 0)
 			continue;
-		tokenize(buf, arr);
-		execute_func(&stack, arr, line_number);
+		bufze(buff, array);
+		app_func(&stack, array, num);
 	}
-	fclose(fp);
+	fclose(file);
 	if (stack)
 		free_stack(&stack);
 	return (0);
